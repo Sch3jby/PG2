@@ -2,6 +2,8 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
+#include <sstream>
+#include <iomanip>
 
 bool App::init() {
     // Initialize GLFW
@@ -190,14 +192,33 @@ void App::run() {
 
     bool animate_color = false;
 
+    // FPS counter variables
+    int frameCount = 0;
+    double lastTime = glfwGetTime();
+    double currentTime;
+    double fps = 0.0;
+    bool vsync_enabled = false;
+
+    // Toggle VSync initially off for maximum FPS
+    glfwSwapInterval(0);
+
     while (!glfwWindowShouldClose(window)) {
         // Calculate time elapsed for potential color animation
-        auto current_time = std::chrono::high_resolution_clock::now();
-        auto time_elapsed = std::chrono::duration<float>(current_time - start_time).count();
+        auto current_animation_time = std::chrono::high_resolution_clock::now();
+        auto time_elapsed = std::chrono::duration<float>(current_animation_time - start_time).count();
 
         // Toggle color animation with spacebar
         if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
             animate_color = !animate_color;
+            // Small delay to prevent multiple toggles
+            glfwWaitEventsTimeout(0.2);
+        }
+
+        // Toggle VSync with F12
+        if (glfwGetKey(window, GLFW_KEY_F12) == GLFW_PRESS) {
+            vsync_enabled = !vsync_enabled;
+            glfwSwapInterval(vsync_enabled ? 1 : 0);
+            std::cout << "VSync: " << (vsync_enabled ? "ON" : "OFF") << std::endl;
             // Small delay to prevent multiple toggles
             glfwWaitEventsTimeout(0.2);
         }
@@ -235,6 +256,27 @@ void App::run() {
 
         // Draw all VAO data
         glDrawArrays(GL_TRIANGLES, 0, triangle_vertices.size());
+
+        // Update FPS counter
+        frameCount++;
+        currentTime = glfwGetTime();
+
+        // If a second has passed
+        if (currentTime - lastTime >= 1.0) {
+            // Calculate the FPS
+            fps = static_cast<double>(frameCount) / (currentTime - lastTime);
+
+            // Update window title with FPS
+            std::stringstream ss;
+            ss << "OpenGL Triangle | FPS: " << std::fixed << std::setprecision(1) << fps
+                << " | VSync: " << (vsync_enabled ? "ON" : "OFF")
+                << " | R:" << std::setprecision(2) << r << " G:" << g << " B:" << b;
+            glfwSetWindowTitle(window, ss.str().c_str());
+
+            // Reset counters
+            frameCount = 0;
+            lastTime = currentTime;
+        }
 
         // Poll events, call callbacks, swap buffers
         glfwPollEvents();
