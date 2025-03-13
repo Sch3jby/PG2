@@ -147,9 +147,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="app.cpp" />
+    <ClCompile Include="gl_err_callback.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="sample_include.cpp" />
-    <ClCompile Include="testvcpackage.cpp" />
+    <ClCompile Include="OBJloader.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
@@ -160,10 +161,17 @@
   <ItemGroup>
     <ClInclude Include="app.hpp" />
     <ClInclude Include="assets.hpp" />
+    <ClInclude Include="gl_err_callback.hpp" />
     <ClInclude Include="Mesh.hpp" />
     <ClInclude Include="Model.hpp" />
     <ClInclude Include="OBJloader.hpp" />
     <ClInclude Include="ShaderProgram.hpp" />
+    <ClInclude Include="teapot_vec.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="..\..\..\..\..\Downloads\triangle.obj" />
+    <Object Include="assets\bunny_tri_vn.obj" />
+    <Object Include="assets\bunny_tri_vnt.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

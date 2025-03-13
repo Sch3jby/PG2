@@ -13,21 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Zdrojové soubory\shaders">
+    <Filter Include="Soubory zdrojů\shaders">
       <UniqueIdentifier>{641da49d-ee43-406e-b1bc-da8053c7349c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sample_include.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="testvcpackage.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
     <ClCompile Include="app.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
+    <ClCompile Include="gl_err_callback.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJloader.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,10 +38,10 @@
     <None Include="vcpkg.json" />
     <None Include="config.json" />
     <None Include="shader.frag">
-      <Filter>Zdrojové soubory\shaders</Filter>
+      <Filter>Soubory zdrojů\shaders</Filter>
     </None>
     <None Include="shader.vert">
-      <Filter>Zdrojové soubory\shaders</Filter>
+      <Filter>Soubory zdrojů\shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -60,5 +63,22 @@
     <ClInclude Include="ShaderProgram.hpp">
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
+    <ClInclude Include="teapot_vec.hpp">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_err_callback.hpp">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="assets\bunny_tri_vn.obj">
+      <Filter>Soubory zdrojů</Filter>
+    </Object>
+    <Object Include="assets\bunny_tri_vnt.obj">
+      <Filter>Soubory zdrojů</Filter>
+    </Object>
+    <Object Include="..\..\..\..\..\Downloads\triangle.obj">
+      <Filter>Soubory zdrojů</Filter>
+    </Object>
   </ItemGroup>
 </Project>
